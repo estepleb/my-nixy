@@ -8,7 +8,7 @@
 in {
   programs.zsh.enable = true;
   users = {
-    defaultUserShell = pkgs.zsh;
+    defaultUserShell = pkgs.bash;
 
     users.${username} = {
       isNormalUser = true;

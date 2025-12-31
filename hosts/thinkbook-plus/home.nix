@@ -10,11 +10,10 @@
 
     # Programs
     ../../home/programs/kitty
-    # ../../home/programs/alacritty
-    ../../home/programs/ghostty
     ../../home/programs/nvf
     ../../home/programs/shell
     ../../home/programs/fetch
+    ../../home/programs/foot
     ../../home/programs/git
     ../../home/programs/git/signing.nix
     ../../home/programs/spicetify
@@ -28,17 +27,12 @@
 
     # System (Desktop environment like stuff)
     ../../home/system/hyprland
-    ../../home/system/hyprlock
-    ../../home/system/hyprpanel
-    ../../home/system/hyprpaper
     ../../home/system/zathura
     ../../home/system/mime
     ../../home/system/udiskie
     ../../home/system/vicinae
-    ../../home/system/wofi
-    # ../../home/system/hypridle
 
-    # ./secrets # CHANGEME: You should probably remove this line, this is where I store my secrets
+   # ./secrets # CHANGEME: You should probably remove this line, this is where I store my secrets
   ];
 
   home = {
@@ -54,18 +48,16 @@
       planify # Todolists
       textpieces # Manipulate texts
       curtail # Compress images
-      resources # Ressource monitor
+      resources # Resource monitor
+      missioncenter # Resources monitor
       gnome-clocks # Clocks app
       gnome-text-editor # Basic graphic text editor
+      gnome-calculator # Basic calculator
       mpv # Video player
       brave # Web browser
 
       # Privacy
-      session-desktop # Session app, private messages
       signal-desktop # Signal app, private messages
-      protonvpn-gui
-      proton-pass
-      proton-authenticator
       ticktick # Privacy friendly todo app
 
       # Dev
