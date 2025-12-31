@@ -7,14 +7,12 @@
     ../../nixos/home-manager.nix
     ../../nixos/nix.nix
     ../../nixos/systemd-boot.nix
-    ../../nixos/sddm.nix
     ../../nixos/users.nix
     ../../nixos/utils.nix
     ../../nixos/tailscale.nix
+    ../../nixos/tuigreet.nix
     ../../nixos/hyprland.nix
     ../../nixos/docker.nix
-
-    ../../nixos/omen.nix # For my laptop only
 
     # You should let those lines as is
     ./hardware-configuration.nix

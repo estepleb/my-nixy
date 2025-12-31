@@ -15,6 +15,7 @@
     ../../home/programs/nvf
     ../../home/programs/shell
     ../../home/programs/fetch
+    ../../home/programs/foot
     ../../home/programs/git
     ../../home/programs/git/signing.nix
     ../../home/programs/spicetify
@@ -28,17 +29,12 @@
 
     # System (Desktop environment like stuff)
     ../../home/system/hyprland
-    ../../home/system/hyprlock
-    ../../home/system/hyprpanel
-    ../../home/system/hyprpaper
     ../../home/system/zathura
     ../../home/system/mime
     ../../home/system/udiskie
     ../../home/system/vicinae
-    ../../home/system/wofi
-    # ../../home/system/hypridle
 
-    ./secrets # CHANGEME: You should probably remove this line, this is where I store my secrets
+   # ./secrets # CHANGEME: You should probably remove this line, this is where I store my secrets
   ];
 
   home = {
