@@ -1,0 +1,41 @@
+{
+  config,
+  lib,
+  ...
+}: {
+  imports = [
+    # Choose your theme here:
+    ../../themes/nixy.nix
+  ];
+
+  config.var = {
+    hostname = "thinkbook-plus";
+    username = "estepleb";
+    configDirectory =
+      "/home/"
+      + config.var.username
+      + "/.config/nixos"; # The path of the nixos configuration directory
+
+    keyboardLayout = "en";
+
+    location = "Washington DC";
+    timeZone = "America/New_York";
+    defaultLocale = "en_US.UTF-8";
+
+    git = {
+      username = "estepleb";
+      email = "tallis.estevez1@gmail.com";
+    };
+
+    autoUpgrade = false;
+    autoGarbageCollector = true;
+  };
+
+  # Leave this here
+  options = {
+    var = lib.mkOption {
+      type = lib.types.attrs;
+      default = {};
+    };
+  };
+}

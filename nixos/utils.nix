@@ -56,9 +56,9 @@ in {
   environment.variables = {
     XDG_DATA_HOME = "$HOME/.local/share";
     PASSWORD_STORE_DIR = "$HOME/.local/share/password-store";
-    EDITOR = "nvim";
-    TERMINAL = "kitty";
-    TERM = "kitty";
+    EDITOR = "zeditor";
+    TERMINAL = "foot";
+    TERM = "foot";
     BROWSER = "zen-beta";
   };
 
@@ -102,6 +102,7 @@ in {
     vim
     go
     comma
+    micro
   ];
 
   xdg.portal = {
@@ -110,9 +111,11 @@ in {
     config = {
       common.default = ["gtk"];
       hyprland.default = ["gtk" "hyprland"];
+      mango.default = ["wlroots" "gtk"];
+
     };
 
-    extraPortals = [pkgs.xdg-desktop-portal-gtk];
+    extraPortals = [pkgs.xdg-desktop-portal-gtk pkgs.xdg-desktop-portal-wlroots];
   };
 
   security = {

@@ -4,10 +4,11 @@
     bootspec.enable = true;
     loader = {
       efi.canTouchEfiVariables = true;
-      systemd-boot = {
+      limine = {
         enable = true;
-        consoleMode = "auto";
-        configurationLimit = 8;
+        efiSupport = "true";
+        biosSupport = "true";
+        maxGenerations = 10;
       };
     };
     tmp.cleanOnBoot = true;
