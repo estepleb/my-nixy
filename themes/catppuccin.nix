@@ -62,8 +62,8 @@
 
     fonts = {
       monospace = {
-        package = pkgs.nerd-fonts.jetbrains-mono;
-        name = "JetBrains Mono Nerd Font";
+        package = pkgs.nerd-fonts.caskaydia-mono;
+        name = "Caskaydia Mono Nerd Font";
       };
       sansSerif = {
         package = pkgs.source-sans-pro;
@@ -75,10 +75,10 @@
         name = "Noto Color Emoji";
       };
       sizes = {
-        applications = 13;
-        desktop = 13;
-        popups = 13;
-        terminal = 13;
+        applications = 12;
+        desktop = 12;
+        popups = 12;
+        terminal = 12;
       };
     };
 
@@ -89,3 +89,4 @@
     };
   };
 }
+

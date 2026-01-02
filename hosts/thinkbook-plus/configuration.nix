@@ -6,15 +6,17 @@
     ../../nixos/fonts.nix
     ../../nixos/home-manager.nix
     ../../nixos/nix.nix
-    ../../nixos/systemd-boot.nix
+    ../../nixos/dms.nix
+    ../../nixos/dms-greeter.nix
+    ../../nixos/limine.nix
     ../../nixos/users.nix
     ../../nixos/utils.nix
     ../../nixos/tailscale.nix
-    ../../nixos/tuigreet.nix
     ../../nixos/hyprland.nix
+    ../../nixos/mango.nix
     ../../nixos/docker.nix
 
-    # You should let those lines as is
+    # You should leave those lines as is
     ./hardware-configuration.nix
     ./variables.nix
   ];

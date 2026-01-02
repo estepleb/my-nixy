@@ -5,13 +5,11 @@
 }: {
     programs.foot = {
       enable = true;
-      catppuccin.enable = true;
 
 
       settings = {
         main = {
           term = "foot";
-          font = "CaskaydiaMonoNerdFont:size=12";
           shell = "fish";
           pad = "15x15";
           selection-target = "clipboard";
@@ -30,5 +28,4 @@
         };
       };
     };
-  };
-}
+  }

@@ -10,7 +10,7 @@
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.05";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
-    hyprpanel.url = "github:Jas-SinghFSU/HyprPanel";
+    mac-style-plymouth.url = "github:SergioRibera/s4rchiso-plymouth-theme";
     stylix.url = "github:danth/stylix";
     apple-fonts.url = "github:Lyndeno/apple-fonts.nix";
     nixcord.url = "github:kaylorben/nixcord";
@@ -26,22 +26,37 @@
       url = "github:Gerg-L/spicetify-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    mango = {
+          url = "github:DreamMaoMao/mango";
+          inputs.nixpkgs.follows = "nixpkgs";
+        };
+    dms = {
+      url = "github:AvengeMedia/DankMaterialShell/stable";
+      inputs.nixpkgs.follows = "nixpkgs";
+        };
+    quickshell = {
+      url = "git+https://git.outfoxxed.me/quickshell/quickshell";
+      inputs.nixpkgs.follows = "nixpkgs";
+        };
     eleakxir.url = "github:anotherhadi/eleakxir";
   };
 
-  outputs = inputs @ {nixpkgs, ...}: {
+  outputs = inputs @ { self, nixpkgs, mango, ...}: {
     nixosConfigurations = {
       thinkbook-plus =
         nixpkgs.lib.nixosSystem {
           modules = [
             {
-              nixpkgs.overlays = [];
+              nixpkgs.overlays = [
+           	    inputs.mac-style-plymouth.overlays.default
+              ];
               _module.args = {
                 inherit inputs;
               };
             }
             inputs.home-manager.nixosModules.home-manager
             inputs.stylix.nixosModules.stylix
+            inputs.mango.nixosModules.mango
             ./hosts/thinkbook-plus/configuration.nix # CHANGEME: change the path to match your host folder
           ];
         };

@@ -12,12 +12,12 @@ in {
   programs.fish = {
     enable = true;
     generateCompletions = true;
-    vendor.completions.enable = true;
 
     shellAbbrs = {
       vim = "nvim";
       vi = "nvim";
       v = "nvim";
+      m = "micro";
       c = "clear";
       clera = "clear";
       celar = "clear";

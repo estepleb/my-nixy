@@ -2,6 +2,7 @@
 {
   pkgs,
   config,
+  lib,
   ...
 }: let
   hostname = config.var.hostname;
@@ -111,11 +112,11 @@ in {
     config = {
       common.default = ["gtk"];
       hyprland.default = ["gtk" "hyprland"];
-      mango.default = ["wlroots" "gtk"];
+      mango.default = lib.mkForce ["wlroots" "gtk"];
 
     };
 
-    extraPortals = [pkgs.xdg-desktop-portal-gtk pkgs.xdg-desktop-portal-wlroots];
+    extraPortals = [pkgs.xdg-desktop-portal-gtk];
   };
 
   security = {
