@@ -27,10 +27,10 @@
 
     # System (Desktop environment like stuff)
     ../../home/system/hyprland
+    ../../home/system/mangowc
     ../../home/system/zathura
     ../../home/system/mime
     ../../home/system/udiskie
-    ../../home/system/vicinae
 
    # ./secrets # CHANGEME: You should probably remove this line, this is where I store my secrets
   ];
@@ -49,7 +49,7 @@
       textpieces # Manipulate texts
       curtail # Compress images
       resources # Resource monitor
-      missioncenter # Resources monitor
+      mission-center # Resources monitor
       gnome-clocks # Clocks app
       gnome-text-editor # Basic graphic text editor
       gnome-calculator # Basic calculator

@@ -1,14 +1,13 @@
-# Systemd-boot configuration for NixOS
-{pkgs, ...}: {
+# Limine boot configuration for NixOS
+{ config, pkgs, lib, ...}: {
   boot = {
     bootspec.enable = true;
     loader = {
       efi.canTouchEfiVariables = true;
       limine = {
         enable = true;
-        efiSupport = "true";
-        biosSupport = "true";
-        maxGenerations = 10;
+        efiSupport = true;
+        maxGenerations = 20;
       };
     };
     tmp.cleanOnBoot = true;
@@ -24,17 +23,14 @@
       "udev.log_priority=3"
       "boot.shell_on_fail"
     ];
-    consoleLogLevel = 0;
+    consoleLogLevel = 3;
     initrd.verbose = false;
+    initrd.systemd.enable = true;
 
     plymouth = {
        enable = true;
-       theme = lib.mkForce "cuts_alt";
-       themePackages = with pkgs; [
-         (adi1090x-plymouth-themes.override {
-           selected_themes = ["cuts_alt"];
-         })
-       ];
+       theme = lib.mkForce "mac-style";
+       themePackages = with pkgs; [ mac-style-plymouth ];
      };
   };
 
