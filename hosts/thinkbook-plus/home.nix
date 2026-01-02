@@ -10,7 +10,6 @@
 
     # Programs
     ../../home/programs/kitty
-    ../../home/programs/nvf
     ../../home/programs/shell
     ../../home/programs/fetch
     ../../home/programs/foot
@@ -53,14 +52,16 @@
       gnome-clocks # Clocks app
       gnome-text-editor # Basic graphic text editor
       gnome-calculator # Basic calculator
+      gnome-calendar # Basic calendar
       mpv # Video player
-      brave # Web browser
+      firefox # Web browser
+
 
       # Privacy
-      signal-desktop # Signal app, private messages
       ticktick # Privacy friendly todo app
 
       # Dev
+      zeditor
       go
       bun
       docker
@@ -90,9 +91,6 @@
       cbonsai
       pipes
       cmatrix
-
-      # Backup
-      vscode
     ];
 
     # Import my profile picture, used by the hyprpanel dashboard
