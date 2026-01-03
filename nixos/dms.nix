@@ -2,8 +2,7 @@
   pkgs,
   inputs,
   ...
-}:
-{
+}: {
 	programs.dms-shell = {
 	  enable = true;
 

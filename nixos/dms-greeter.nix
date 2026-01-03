@@ -2,8 +2,7 @@
   pkgs,
   inputs,
   ...
-}:
-{
+}: {
 services.displayManager.dms-greeter = {
   compositor = {
     enable = true;

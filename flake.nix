@@ -16,8 +16,6 @@
     nixcord.url = "github:kaylorben/nixcord";
     sops-nix.url = "github:Mic92/sops-nix";
     nixarr.url = "github:rasmus-kirk/nixarr";
-    nvf.url = "github:notashelf/nvf";
-    vicinae.url = "github:vicinaehq/vicinae";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -38,7 +36,6 @@
       url = "git+https://git.outfoxxed.me/quickshell/quickshell";
       inputs.nixpkgs.follows = "nixpkgs";
         };
-    eleakxir.url = "github:anotherhadi/eleakxir";
   };
 
   outputs = inputs @ { self, nixpkgs, mango, ...}: {
@@ -57,7 +54,7 @@
             inputs.home-manager.nixosModules.home-manager
             inputs.stylix.nixosModules.stylix
             inputs.mango.nixosModules.mango
-            ./hosts/thinkbook-plus/configuration.nix # CHANGEME: change the path to match your host folder
+            ./hosts/thinkbook-plus/configuration.nix
           ];
         };
       # Jack is my server

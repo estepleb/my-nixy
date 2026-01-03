@@ -18,7 +18,7 @@
 
     keyboardLayout = "us";
 
-    location = "Washington DC";
+    location = "Silver Spring, MD";
     timeZone = "America/New_York";
     defaultLocale = "en_US.UTF-8";
     extraLocale = "en_US.UTF-8";
