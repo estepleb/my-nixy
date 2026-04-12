@@ -3,14 +3,10 @@
   lib,
   ...
 }: {
-  imports = [
-    # Choose your theme here:
-    ../../themes/nixy.nix
-  ];
 
   config.var = {
-    hostname = "jack";
-    username = "hadi";
+    hostname = "docker-vm";
+    username = "estepleb";
     configDirectory =
       "/home/"
       + config.var.username
@@ -19,16 +15,16 @@
     keyboardLayout = "fr";
 
     location = "Paris";
-    timeZone = "Europe/Paris";
+    timeZone = "America/New_York";
     defaultLocale = "en_US.UTF-8";
-    extraLocale = "fr_FR.UTF-8";
+    extraLocale = "en_US.UTF-8";
 
     git = {
-      username = "Hadi";
+      username = "estepleb";
       email = "112569860+anotherhadi@users.noreply.github.com";
     };
 
-    autoUpgrade = false;
+    autoUpgrade = true;
     autoGarbageCollector = true;
   };
 

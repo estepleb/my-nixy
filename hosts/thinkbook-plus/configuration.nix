@@ -12,7 +12,7 @@
     ../../nixos/users.nix
     ../../nixos/utils.nix
     ../../nixos/tailscale.nix
-    ../../nixos/hyprland.nix
+    ../../nixos/niri.nix
     ../../nixos/mango.nix
     ../../nixos/docker.nix
 
@@ -24,5 +24,5 @@
   home-manager.users."${config.var.username}" = import ./home.nix;
 
   # Don't touch this
-  system.stateVersion = "24.05";
+  system.stateVersion = "25.11";
 }

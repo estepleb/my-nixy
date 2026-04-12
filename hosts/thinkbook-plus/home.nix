@@ -9,14 +9,12 @@
     ./variables.nix
 
     # Programs
-    ../../home/programs/kitty
     ../../home/programs/shell
     ../../home/programs/fetch
     ../../home/programs/foot
     ../../home/programs/git
     ../../home/programs/git/signing.nix
     ../../home/programs/spicetify
-    ../../home/programs/thunar
     ../../home/programs/lazygit
     ../../home/programs/discord
     ../../home/programs/tailscale
@@ -25,9 +23,7 @@
     ../../home/scripts # All scripts
 
     # System (Desktop environment like stuff)
-    ../../home/system/hyprland
     ../../home/system/mangowc
-    ../../home/system/zathura
     ../../home/system/mime
     ../../home/system/udiskie
 
@@ -97,7 +93,7 @@
     file.".face.icon" = {source = ./profile_picture.png;};
 
     # Don't touch this
-    stateVersion = "24.05";
+    stateVersion = "25.11";
   };
 
   programs.home-manager.enable = true;

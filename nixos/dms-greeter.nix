@@ -1,4 +1,5 @@
 {
+  config,
   pkgs,
   inputs,
   ...
@@ -50,11 +51,11 @@ services.displayManager.dms-greeter = {
   };
 
   # Sync your user's DankMaterialShell theme with the greeter. You'll probably want this
-  configHome = "/home/${username}";
+  configHome = "/home/${config.var.username}";
 
   # Custom config files for non-standard config locations
   configFiles = [
-    "/home/${username}/.config/DankMaterialShell/settings.json"
+    "/home/${config.var.username}/.config/DankMaterialShell/settings.json"
   ];
 
   # Save the logs to a file
