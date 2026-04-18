@@ -8,7 +8,6 @@
     ./variables.nix
 
     # Programs
-    ../../home/programs/nvf
     ../../home/programs/shell
     ../../home/programs/fetch
     ../../home/programs/git
@@ -44,7 +43,7 @@
     ];
 
     # Don't touch this
-    stateVersion = "24.05";
+    stateVersion = "25.11";
   };
 
   programs.home-manager.enable = true;

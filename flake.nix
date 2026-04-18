@@ -7,7 +7,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.05";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.11";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
     mac-style-plymouth.url = "github:SergioRibera/s4rchiso-plymouth-theme";
@@ -18,10 +18,6 @@
     nixarr.url = "github:rasmus-kirk/nixarr";
     home-manager = {
       url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    spicetify-nix = {
-      url = "github:Gerg-L/spicetify-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     mango = {
@@ -58,14 +54,10 @@
           ];
         };
       # Jack is my server
-      jack = nixpkgs.lib.nixosSystem {
+      docker-nix = nixpkgs.lib.nixosSystem {
         modules = [
           {_module.args = {inherit inputs;};}
           inputs.home-manager.nixosModules.home-manager
-          inputs.stylix.nixosModules.stylix
-          inputs.sops-nix.nixosModules.sops
-          inputs.nixarr.nixosModules.default
-          inputs.eleakxir.nixosModules.eleakxir
           ./hosts/server/configuration.nix
         ];
       };

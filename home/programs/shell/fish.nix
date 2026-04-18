@@ -4,10 +4,9 @@
   lib,
   config,
   ...
-}: let
-  fetch = config.theme.fetch; # neofetch, nerdfetch, pfetch
-in {
-  home.packages = with pkgs; [bat ripgrep tldr sesh];
+}: 
+{
+  home.packages = with pkgs; [bat ripgrep tldr sesh fastfetch eza zoxide];
 
   programs.fish = {
     enable = true;
@@ -15,23 +14,23 @@ in {
 
     shellAbbrs = {
       m = "micro";
-      c = "clear";
-      clera = "clear";
-      celar = "clear";
-      e = "exit";
+      cl = "clear";
+      ex = "exit";
       cd = "z";
       sl = "ls";
       mkdir = "mkdir -p";
       cp = "cp -v";
       mv = "mv -v";
-
-      obsidian-no-gpu = "env ELECTRON_OZONE_PLATFORM_HINT=auto obsidian --ozone-platform=x11";
-
-      notes = "nvim ~/notes/index.md --cmd 'cd ~/notes' -c ':lua Snacks.picker.smart()'";
-      note = "notes";
-      tmp = "nvim /tmp/$(date | sed 's/ //g;s/\\.//g').md";
+      
+      ns = "nix-search";
+      dc = "docker compose";
+      dcu = "docker compose up";
+      dcd = "docker compose down";
+      dcr = "docker compose restart";
+      dcp = "docker compose pull";
 
       nix-shell = "nix-shell --command fish";
+
 
       # git
       g = "lazygit";
@@ -57,14 +56,15 @@ in {
       la = "eza -a --color=always --group-directories-first --icons=always --no-quotes";
       ll = "eza -l --color=always --group-directories-first --icons=always --no-quotes";
       tree = "eza -aT --color=always --group-directories-first --icons=always --no-quotes";
-      l. = "eza -a | grep -e '^\.'"
+      "l." = "eza -a | grep -e '^\.'";
       open = "${pkgs.xdg-utils}/bin/xdg-open";
       cat = "bat --theme=base16 --color=always --paging=never --tabs=2 --wrap=never --plain";
-    }
+    };
+    
     shellInit =
     ''
       function fish_greeting
-          fastfetch
+        fastfetch
       end
 
       # Format man pages

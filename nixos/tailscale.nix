@@ -31,7 +31,8 @@ in {
 
 # Tailscale Nfttable support https://wiki.nixos.org/wiki/Tailscale#Native_nftables_Support_(Modern_Setup)
 
-  # 1. Enable the service and the firewall  networking.firewall = {
+  # 1. Enable the service and the firewall  
+  networking.firewall = {
     trustedInterfaces = ["tailscale0"];
     # required to connect to Tailscale exit nodes
     checkReversePath = "loose";

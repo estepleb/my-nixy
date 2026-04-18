@@ -8,6 +8,7 @@
     ../../nixos/utils.nix
     ../../nixos/docker.nix
     ../../nixos/tailscale.nix
+    ../../nixos/virtual-machine.nix
 
     # NixOS server modules
     ../../server-modules/ssh.nix
@@ -25,5 +26,5 @@
   home-manager.users."${config.var.username}" = import ./home.nix;
 
   # Don't touch this
-  system.stateVersion = "24.05";
+  system.stateVersion = "25.11";
 }
