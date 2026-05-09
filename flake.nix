@@ -53,12 +53,12 @@
             ./hosts/thinkbook-plus/configuration.nix
           ];
         };
-      # Jack is my server
-      docker-nix = nixpkgs.lib.nixosSystem {
+      nix-vm = nixpkgs.lib.nixosSystem {
         modules = [
           {_module.args = {inherit inputs;};}
+          inputs.sops-nix.nixosModules.sops
           inputs.home-manager.nixosModules.home-manager
-          ./hosts/server/configuration.nix
+          ./hosts/nix-vm/configuration.nix
         ];
       };
     };

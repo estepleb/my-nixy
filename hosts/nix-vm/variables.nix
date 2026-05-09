@@ -5,16 +5,21 @@
 }: {
 
   config.var = {
-    hostname = "docker-vm";
+    hostname = "nix-vm";
     username = "estepleb";
+    tailnet = "bullhead-komodo.ts.net";
+    secretsDirectory = "/home/"
+          + config.var.username
+          + "/.config/nixos/hosts/nix-vm/secrets/sops-files";
+          
     configDirectory =
       "/home/"
       + config.var.username
       + "/.config/nixos"; # The path of the nixos configuration directory
 
-    keyboardLayout = "fr";
+    keyboardLayout = "us";
 
-    location = "Paris";
+    location = "Washington DC";
     timeZone = "America/New_York";
     defaultLocale = "en_US.UTF-8";
     extraLocale = "en_US.UTF-8";

@@ -42,7 +42,7 @@ in {
 
   services = {
     xserver = {
-      enable = true;
+      enable = false;
       xkb.layout = keyboardLayout;
       xkb.variant = "";
     };
@@ -57,10 +57,10 @@ in {
   environment.variables = {
     XDG_DATA_HOME = "$HOME/.local/share";
     PASSWORD_STORE_DIR = "$HOME/.local/share/password-store";
-    EDITOR = "zeditor";
+    EDITOR = "micro";
     TERMINAL = "foot";
     TERM = "foot";
-    BROWSER = "zen-beta";
+    BROWSER = "zen-browser";
   };
 
   services.libinput.enable = true;
@@ -77,8 +77,8 @@ in {
     udisks2.enable = true;
   };
 
-  # enable zsh autocompletion for system packages (systemd, etc)
-  environment.pathsToLink = ["/share/zsh"];
+  # enable fish autocompletion for system packages (systemd, etc)
+  environment.pathsToLink = ["/share/fish"];
 
   # Faster rebuilding
   documentation = {
@@ -91,7 +91,6 @@ in {
   };
 
   environment.systemPackages = with pkgs; [
-    hyprland-qtutils
     fd
     bc
     gcc

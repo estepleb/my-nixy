@@ -1,0 +1,7 @@
+keys:
+  - &server age14phvaa5sdeqnycdcvcs9m5gv0n38d6mhua7ehghtyu0mwp90p36sczj8s7
+creation_rules:
+  - path_regex: hosts/*/secrets/.*
+    key_groups:
+      - age:
+          - *server
