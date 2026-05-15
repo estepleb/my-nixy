@@ -8,10 +8,10 @@ let
 in
 {
   sops.secrets.opencloud-env = {
-    sopsFile = "${config.var.secretsDirectory}/opencloud.env";
+    sopsFile = ../hosts/nix-vm/secrets/sops-files/opencloud.env;
     format = "dotenv";
     owner = config.services.opencloud.user;
-    group = config.services.opencloud.user;
+    group = config.services.opencloud.group;
     mode = "0400";
   };
 
@@ -25,6 +25,7 @@ in
   services.opencloud = {
     enable = true;
     url = "https://${host}";
+    stateDir = "/var/lib/opencloud";
     address = "127.0.0.1";
     inherit port;
     environmentFile = config.sops.secrets.opencloud-env.path;
@@ -33,6 +34,12 @@ in
       OC_INSECURE = "true";
       OC_LOG_LEVEL = "warn";
       PROXY_TLS = "false";
+      COLLABORATION_APP_NAME = "OnlyOffice"; # PascalCase name of service
+      COLLABORATION_APP_PRODUCT = "Onlyoffice";# Collabora, OnlyOffice, Microsoft365 or MicrosoftOfficeOnline
+      COLLABORATION_APP_ADDR = "office.${config.var.tailnet}"; # The URL of the collaborative editing app (onlyoffice, collabora, etc).
+      COLLABORATION_APP_INSECURE = "false"; # In case you are using a self signed certificate for the WOPI app you can tell the collaboration service to allow an insecure connection.
+      COLLABORATION_WOPI_SRC = "office.${config.var.tailnet}"; # The external address of the collaboration service. The target app (onlyoffice, collabora, etc) will use this address to read and write files from OpenCloud.
+      
       # Uncomment when Authelia is ready:
       # OC_EXCLUDE_RUN_SERVICES = "idp";
       # OC_OIDC_ISSUER = oidcIssuer;

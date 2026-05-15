@@ -1,18 +1,17 @@
 { config, pkgs, ... }:
 
 {
-  sops.secrets.tailscale-env = {
-    sopsFile = ./secrets/sops-files/tailscale.env;
-    format = "dotenv";
+  sops.secrets.tsauthkey = {
+    sopsFile = ../hosts/nix-vm/secrets/sops-files/secrets.env;
     owner = config.services.tailscale.user;
-    group = config.services.tailscale.user;
+    group = config.services.tailscale.group;
     mode = "0400";
   };
   # 1. Enable the service and the firewall
   services.tailscale = {
     enable = true;
     # If you would like to use a preauthorized key
-    authKeyFile = "/run/secrets/tailscale_key";
+    authKeyFile = config.sops.secrets.tsauthkey.path;
   };
   networking.nftables.enable = true;
   networking.firewall = {

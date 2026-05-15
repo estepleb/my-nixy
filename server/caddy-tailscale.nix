@@ -1,9 +1,11 @@
 { config, pkgs, ... }:
 {
-  sops.secrets.services-tsauthkey-env = {
-    sopsFile = "${config.var.secretsDirectory}/tailscale.env";
+  sops.secrets.tsauthkey = {
+    sopsFile = ../hosts/nix-vm/secrets/secrets.yaml;
+    format = "yaml";
     owner = config.services.caddy.user;
-    format = "dotenv";
+    group = config.services.caddy.group;
+    mode = "0400";
   };
 
   services.caddy = {
@@ -11,9 +13,9 @@
     package = pkgs.caddy.withPlugins {
       plugins = [
         "github.com/jasonlovesdoggo/caddy-defender@v0.8.5"
-        "github.com/tailscale/caddy-tailscale@v0.0.0-20250207163903-69a970c84556"
+        "github.com/tailscale/caddy-tailscale@v0.0.0-20260106222316-bb080c4414ac"
       ];
-      hash = "sha256-deSMEs9pmbmc6B+IexAjywpw7cCRn1ZOCTbVJve8SjI=";
+      hash = "sha256-uyT7tiRrBcU7ydvdGzdiHsQjPV24baus4/XUT/IoqS8=";
     };
 
     globalConfig = ''
@@ -21,6 +23,6 @@
       }
     '';
 
-    environmentFile = config.sops.secrets.services-tsauthkey-env.path;
+    environmentFile = config.sops.secrets.tsauthkey.path;
   };
 }
