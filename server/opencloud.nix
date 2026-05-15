@@ -1,6 +1,6 @@
 { config, pkgs, ... }:
 let
-  host = "opencloud.${config.var.tailnet}";
+  domain = "opencloud.${config.var.tailnet}";
   port = 9200;
   # Uncomment when Authelia is ready:
   # oidcIssuer = "https://auth.${config.var.tailnet}";
@@ -15,16 +15,31 @@ in
     mode = "0400";
   };
 
-  services.caddy.virtualHosts."${host}" = {
+  services.homepage-dashboard.services = [
+    {
+      "Personal" = [
+        {
+          "Opencloud" = {
+            icon = "opencloud.png";
+            description = "File share cloud";
+            href = "https://${domain}";
+          };
+        }
+      ];
+    }
+  ];
+  
+  services.caddy.virtualHosts."${domain}" = {
     extraConfig = ''
       bind tailscale/opencloud
+      encode zstd gzip
       reverse_proxy 127.0.0.1:${toString port}
     '';
   };
 
   services.opencloud = {
     enable = true;
-    url = "https://${host}";
+    url = "https://${domain}";
     stateDir = "/var/lib/opencloud";
     address = "127.0.0.1";
     inherit port;
@@ -63,7 +78,7 @@ in
         graph.spaces.insecure = true;
         proxy.insecure_backends = true;
       };
-      web.web.config.server = "https://${host}";
+      web.web.config.server = "https://${domain}";
       # Uncomment when Authelia is ready:
       # csp.directives = {
       #   "connect-src" = [ "https://${host}/" oidcIssuer ];

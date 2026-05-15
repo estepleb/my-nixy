@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 let
-  host = "opencloud.${config.var.tailnet}";
-  port = 9200;
+  host = "homepage.${config.var.tailnet}";
+  port = 8082;
   # Uncomment when Authelia is ready:
   # oidcIssuer = "https://auth.${config.var.tailnet}";
   # oidcClientId = "opencloud";
@@ -10,14 +10,14 @@ in
   # sops.secrets.homepage-dashboard-env = {
   #   sopsFile = ../hosts/nix-vm/secrets/secrets.yaml;
   #   format = "yaml";
-  #   owner = config.services.opencloud.user;
-  #   group = config.services.opencloud.group;
+  #   owner = config.services.homepage-dashboard.user;
+  #   group = config.services.homepage-dashboard.group;
   #   mode = "0400";
   # };
-  
+
   virtualisation.oci-containers.containers.socket-proxy = {
     image = "lscr.io/linuxserver/socket-proxy:latest";
-    environmentFiles = [ /path/to/socket.env ];
+    ports = [ "127.0.0.1:2375:2375" ];
     environment = {
       ALLOW_START = "0";
       ALLOW_STOP = "0";
@@ -61,18 +61,20 @@ in
       "--health-retries=3"
       "--health-start-period=5s"
     ];
-  }; 
-  
+  };
+
   services.caddy.virtualHosts."${host}" = {
     extraConfig = ''
       bind tailscale/homepage
+      encode zstd gzip
       reverse_proxy 127.0.0.1:${toString port}
     '';
   };
-
+  
   services.homepage-dashboard = {
     enable = true;
     package = pkgs.homepage-dashboard;
+    allowedHosts = "localhost:${toString port},127.0.0.1:${toString port},homepage.${config.var.tailnet}";
     settings = {
       providers = {
         openweathermap = "openweathermapapikey";
@@ -89,49 +91,73 @@ in
         };
       };
     };
-
     bookmarks = [
-      { Developer = [
-        { Github = [{ abbr = "GH"; href = "https://github.com/"; }]; }
-        { Tailscale = [{ abbr = "TS"; href = "https://login.tailscale.com/admin/machines"; }]; }
-      ]; }
-      { Social = [
-        { Reddit = [{ abbr = "RE"; href = "https://reddit.com/"; }]; }
-      ]; }
-      { Entertainment = [
-        { YouTube = [{ abbr = "YT"; href = "https://youtube.com/"; }]; }
-      ]; }
+      {
+        Developer = [
+          { Github = [{ abbr = "GH"; href = "https://github.com/"; }]; }
+          { Tailscale = [{ abbr = "TS"; href = "https://login.tailscale.com/admin/machines"; }]; }
+        ];
+      }
+      {
+        Social = [
+          { Reddit = [{ abbr = "RE"; href = "https://reddit.com/"; }]; }
+        ];
+      }
+      {
+        Entertainment = [
+          { YouTube = [{ abbr = "YT"; href = "https://youtube.com/"; }]; }
+        ];
+      }
     ];
-
     services = [
-      { Utilities = [
-        { Cockpit = {
-          icon = "cockpit.png";
-          href = "http://inspiron.bullhead-komodo.ts.net";
-          description = "Inspiron Cockpit";
-        }; }
-      ]; }
+      {
+        "Utilities" = [
+          {
+            "Proxmox" = {
+              icon = "proxmox.png";
+              href = "https://proxmox.${config.var.tailnet}";
+              description = "Lenovo m90q Proxmox";
+            };
+          }
+          {
+            "Adguard" = {
+              icon = "adguard-home.png";
+              href = "https://adguard.${config.var.tailnet}";
+              description = "DNS Filter";
+            };
+          }
+        ];
+      }
     ];
-
-    widgets = [];
-
+    widgets = [
+      {
+        resources = {
+          cpu = true;
+          disk = "/";
+          memory = true;
+        };
+      }
+      {
+        search = {
+          provider = "duckduckgo";
+          target = "_blank";
+        };
+      }
+    ];
     kubernetes = {};
-
-    proxmox = {
-      pve = {
-        url = "https://proxmox.host.or.ip:8006";
-        token = "username@pam!Token ID";
-        secret = "secret";
-      };
-    };
-
+    # proxmox = {
+    #   pve = {
+    #     url = "https://proxmox.${config.var.tailnet}";
+    #     token = "username@pam!Token ID";
+    #     secret = "secret";
+    #   };
+    # };
     docker = {
       my-docker = {
-        host = "socket-proxy";
+        host = "127.0.0.1";
         port = 2375;
       };
     };
-
     customJS = "";
     customCSS = "";
   };

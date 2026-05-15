@@ -3,12 +3,16 @@
     age.keyFile = "/home/${config.var.username}/.config/sops/age/keys.txt";
     defaultSopsFile = ./secrets.yaml;
     validateSopsFiles = true;
-    # secrets = {
+    secrets = {
+      owner = paperless;
+      path = "/run/secrets/paperless-secret-key";
+      mode = "0600";
+      };
       # sshconfig = {
       #   owner = config.var.username;
       #   path = "/home/${config.var.username}/.ssh/config";
       #   mode = "0600";
-      # };
+      #   };
       # github-key = {
       #   owner = config.var.username;
       #   path = "/home/${config.var.username}/.ssh/github";
@@ -24,6 +28,7 @@
       #   path = "/home/${config.var.username}/.ssh/key.pub";
       #   mode = "0600";
       # };
+      };
     };
 environment.systemPackages = with pkgs; [
     sops

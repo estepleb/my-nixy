@@ -11,6 +11,20 @@ in
         reverse_proxy 127.0.0.1:${toString guiPort}
       '';
     };
+
+    services.homepage-dashboard.services = [
+      {
+        "Utilities" = [
+          {
+            "Syncthing" = {
+              icon = "syncthing.png";
+              description = "File syncing";
+              href = "https://${domain}";
+            };
+          }
+        ];
+      }
+    ];
   
     services.syncthing = {
       enable = true;

@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 let
   hostname = "paperless";
-  paperlessPort = 8000;
+  paperlessPort = 8087;
   domain = "paperless.${config.var.tailnet}";
   # Uncomment when Authelia is ready:
   # oidcIssuer = "https://auth.${config.var.tailnet}";
@@ -20,6 +20,36 @@ in
     users.groups.paperless = {};
     users.users.${config.var.username}.extraGroups = [ "paperless" ];
 
+    sops.secrets.paperless-admin-password = {
+      sopsFile = ../hosts/nix-vm/secrets/secrets.yaml;
+      owner = "paperless";
+    };
+
+    
+    services.caddy.virtualHosts."${domain}" = {
+      extraConfig = ''
+        bind tailscale/${hostname}
+        encode zstd gzip
+        reverse_proxy 127.0.0.1:${toString paperlessPort}
+      '';
+    };
+
+
+    services.homepage-dashboard.services = [
+      {
+        "Personal" = [
+          {
+            "Paperless-ngx" = {
+              icon = "paperless-ngx.png";
+              description = "Document system";
+              href = "https://paperless.${config.var.tailnet}";
+            };
+          }
+        ];
+      }
+    ];
+
+    
     services.paperless = {
       enable = true;
       address = "127.0.0.1";
@@ -29,6 +59,7 @@ in
       mediaDir = "/var/lib/paperless/media";
       consumptionDir = "/var/lib/paperless/consume";
       consumptionDirIsPublic = true;
+      database.createLocally = true;
       passwordFile = config.sops.secrets.paperless-admin-password.path;
 
       settings = {
@@ -76,18 +107,6 @@ in
         "--chromium-disable-javascript=true"
         "--chromium-allow-list=file:///tmp/.*"
       ];
-    };
-
-    services.caddy.virtualHosts."${domain}" = {
-      extraConfig = ''
-        bind tailscale/${hostname}
-        reverse_proxy 127.0.0.1:${toString paperlessPort}
-      '';
-    };
-
-    sops.secrets.paperless-admin-password = {
-      sopsFile = ../hosts/nix-vm/secrets/secrets.yaml;
-      owner = "paperless";
     };
 
     systemd.tmpfiles.rules = [

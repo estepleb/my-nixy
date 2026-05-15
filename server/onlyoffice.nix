@@ -1,7 +1,7 @@
 { self, config, lib, pkgs, ... }:
 let
   officeHost = "office.${config.var.tailnet}";
-  onlyofficePort = 8085;
+  onlyofficePort = 8086;
 in {
   sops.secrets = {
     onlyoffice-jwt-secret = {
