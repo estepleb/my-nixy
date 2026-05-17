@@ -4,10 +4,6 @@
     defaultSopsFile = ./secrets.yaml;
     validateSopsFiles = true;
     secrets = {
-      owner = paperless;
-      path = "/run/secrets/paperless-secret-key";
-      mode = "0600";
-      };
       # sshconfig = {
       #   owner = config.var.username;
       #   path = "/home/${config.var.username}/.ssh/config";

@@ -2,6 +2,7 @@
 let
   proxmoxIP = "192.168.12.150:8006";
   adguardIP = "192.168.12.94:80";
+  dnsIP = "192.168.12.94:53";
 in
 {
   sops.secrets.tsauthkey = {
@@ -11,7 +12,8 @@ in
     group = config.services.caddy.group;
     mode = "0400";
   };
-
+  environment.systemPackages = with pkgs; [ caddy ];
+  
   services.caddy = {
     enable = true;
     package = pkgs.caddy.withPlugins {
@@ -31,18 +33,21 @@ in
         extraConfig = ''
           bind tailscale/proxmox
           encode zstd gzip
-          reverse_proxy https://${proxmoxIP} {
-            transport http {
-              tls_insecure_skip_verify
-            }
-          }
+          reverse_proxy https://${proxmoxIP}
         '';
       };
       "adguard.${config.var.tailnet}" = {
         extraConfig = ''
           bind tailscale/adguard
           encode zstd gzip
-          reverse_proxy https://${adguardIP}
+          reverse_proxy ${adguardIP}
+        '';
+      };
+      "dns.${config.var.tailnet}" = {
+        extraConfig = ''
+          bind tailscale/dns
+          encode zstd gzip
+          reverse_proxy ${dnsIP}
         '';
       };
     };

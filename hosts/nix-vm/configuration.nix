@@ -1,31 +1,33 @@
 {config, pkgs, ...}: {
   imports = [
     # NixOS module
-    ../../nixos/home-manager.nix
-    ../../nixos/nix.nix
-    ../../nixos/grub-vm.nix
-    ../../nixos/users.nix
-    ../../nixos/utils.nix
-    ../../nixos/docker.nix
-    ../../nixos/tailscale.nix
-    ../../nixos/virtual-machine.nix
+	../../modules/nixos/system/home-manager.nix
+	../../modules/nixos/system/nix.nix
+	../../modules/nixos/system/grub-vm.nix
+	../../modules/nixos/system/users.nix
+	../../modules/nixos/system/utils.nix
+	../../modules/nixos/system/docker.nix
+	../../modules/nixos/system/tailscale.nix
+	../../modules/nixos/system/virtual-machine.nix
+	../../modules/nixos/system/nixos/oci-containers.nix
 
     # NixOS server modules
-    ../../server/ssh.nix
-    # ../../server-modules/bitwarden.nix
-    ../../server/firewall.nix
-    ../../server/caddy-tailscale.nix
-    ../../server/opencloud.nix
-    ../../server/nextcloud.nix
-    ../../server/onlyoffice.nix
-    ../../server/syncthing.nix
-    ../../server/ollama.nix
-    ../../server/homepage-dashboard.nix
-    ../../server/paperless.nix
-    # ../../server/filebrowser-quantum.nix
+    ../../modules/nixos/system/ssh.nix
+    # ../../modules/nixos/system/bitwarden.nix
+    ../../modules/nixos/system/firewall.nix
+    ../../modules/nixos/services/caddy-tailscale.nix
+    ../../modules/nixos/services/opencloud.nix
+    # ../../modules/nixos/services/nextcloud.nix
+    # ../../modules/nixos/services/onlyoffice.nix
+    ../../modules/nixos/services/syncthing.nix
+    # ../../modules/nixos/services/ollama.nix
+    ../../modules/nixos/services/homepage-dashboard.nix
+    ../../modules/nixos/services/paperless.nix
+    ../../modules/nixos/services/filebrowser-quantum.nix
 
     # You should leave those lines as is
     ./hardware-configuration.nix
+    ./disks.nix
     ./variables.nix
 
     ./secrets

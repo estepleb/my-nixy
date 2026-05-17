@@ -8,9 +8,9 @@
     ./variables.nix
 
     # Programs
-    ../../home/programs/shell
-    ../../home/programs/fetch
-    ../../home/programs/git
+    ../../modules/home/programs/shell
+    ../../modules/home/programs/fetch
+    ../../modules/home/programs/git
 
   ];
 
