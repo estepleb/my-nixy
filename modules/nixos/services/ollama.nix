@@ -16,6 +16,13 @@ in
         enable = true;
         host = "127.0.0.1";
         port = ollamaPort;
+        loadModels = [ 
+        "llama3.2:3b" 
+        "deepseek-r1:1.5b" 
+        "MedAIBase/PaddleOCR-VL:0.9b" 
+        "qwen3.5" 
+        "gemma4" 
+        ];
       };
       open-webui = {
         enable = true;

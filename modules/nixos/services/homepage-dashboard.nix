@@ -8,7 +8,7 @@ let
 in
 {
   # sops.secrets.homepage-dashboard-env = {
-  #   sopsFile = ../hosts/nix-vm/secrets/secrets.yaml;
+  #   sopsFile = ../../../hosts/nix-vm/secrets/secrets.yaml;
   #   format = "yaml";
   #   owner = config.services.homepage-dashboard.user;
   #   group = config.services.homepage-dashboard.group;

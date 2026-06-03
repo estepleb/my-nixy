@@ -21,7 +21,7 @@ in
     users.users.${config.var.username}.extraGroups = [ "paperless" ];
 
     sops.secrets.paperless-admin-password = {
-      sopsFile = ../hosts/nix-vm/secrets/secrets.yaml;
+      sopsFile = ../../../hosts/nix-vm/secrets/secrets.yaml;
       owner = "paperless";
     };
 

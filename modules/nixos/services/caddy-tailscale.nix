@@ -6,7 +6,7 @@ let
 in
 {
   sops.secrets.tsauthkey = {
-    sopsFile = ../hosts/nix-vm/secrets/secrets.yaml;
+    sopsFile = ../../../hosts/nix-vm/secrets/secrets.yaml;
     format = "yaml";
     owner = config.services.caddy.user;
     group = config.services.caddy.group;
@@ -21,7 +21,7 @@ in
         "github.com/jasonlovesdoggo/caddy-defender@v0.8.5"
         "github.com/tailscale/caddy-tailscale@v0.0.0-20260106222316-bb080c4414ac"
       ];
-      hash = "sha256-uyT7tiRrBcU7ydvdGzdiHsQjPV24baus4/XUT/IoqS8=";
+      hash = "sha256-IBorZQi+xrxHqHwhIZiKSr4FuPEkroCoyfMGs9BNgks=";
     };
     globalConfig = ''
       servers {

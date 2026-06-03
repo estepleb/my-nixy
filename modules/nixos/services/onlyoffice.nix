@@ -5,7 +5,7 @@ let
 in {
   sops.secrets = {
     onlyoffice-jwt-secret = {
-      sopsFile = ../hosts/nix-vm/secrets/secrets.yaml;
+      sopsFile = ../../../hosts/nix-vm/secrets/secrets.yaml;
       format = "yaml";
       owner = "onlyoffice";
       group = "nginx";
@@ -13,7 +13,7 @@ in {
       restartUnits = [ "nginx.service" "onlyoffice-docservice.service" ];
     };
     onlyoffice-nonce = {
-      sopsFile = ../hosts/nix-vm/secrets/secrets.yaml;
+      sopsFile = ../../../hosts/nix-vm/secrets/secrets.yaml;
       format = "yaml";
       owner = "onlyoffice";
       group = "nginx";

@@ -5,7 +5,7 @@ let
 in
 {
   sops.secrets.filebrowser-env = {
-    sopsFile = ../hosts/nix-vm/secrets/secrets.yaml;
+    sopsFile = ../../../hosts/nix-vm/secrets/secrets.yaml;
     format = "yaml";
     mode = "0400";
   }; 

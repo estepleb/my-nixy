@@ -8,7 +8,7 @@ let
 in
 {
   sops.secrets.opencloud-env = {
-    sopsFile = ../hosts/nix-vm/secrets/sops-files/opencloud.env;
+    sopsFile = ../../../hosts/nix-vm/secrets/sops-files/opencloud.env;
     format = "dotenv";
     owner = config.services.opencloud.user;
     group = config.services.opencloud.group;

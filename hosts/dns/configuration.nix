@@ -1,4 +1,4 @@
-{config, pkgs, inputs, ...}: {
+{config, pkgs, ...}: {
   imports = [
 
     # Boot
@@ -10,9 +10,9 @@
 	../../modules/nixos/system/nix.nix
 	../../modules/nixos/system/users.nix
 	../../modules/nixos/system/utils.nix
-	../../modules/nixos/system/docker.nix
+	# ../../modules/nixos/system/docker.nix
 	../../modules/nixos/system/tailscale.nix
-	../../modules/nixos/system/virtual-machine.nix
+	# ../../modules/nixos/system/virtual-machine.nix
 	../../modules/nixos/system/oci-containers.nix
 
     # NixOS server modules
@@ -20,15 +20,14 @@
     # ../../modules/nixos/system/bitwarden.nix
     ../../modules/nixos/system/firewall.nix
     ../../modules/nixos/services/caddy-tailscale.nix
-    ../../modules/nixos/services/opencloud.nix
+    # ../../modules/nixos/services/opencloud.nix
     # ../../modules/nixos/services/nextcloud.nix
     # ../../modules/nixos/services/onlyoffice.nix
-    ../../modules/nixos/services/syncthing.nix
-    ../../modules/nixos/services/ollama.nix
-    ../../modules/nixos/services/homepage-dashboard.nix
-    ../../modules/nixos/services/paperless.nix
-    ../../modules/nixos/services/docling-serve.nix
-    ../../modules/nixos/services/filebrowser-quantum.nix
+    # ../../modules/nixos/services/syncthing.nix
+    # ../../modules/nixos/services/ollama.nix
+    # ../../modules/nixos/services/homepage-dashboard.nix
+    # ../../modules/nixos/services/paperless.nix
+    # ../../modules/nixos/services/filebrowser-quantum.nix
 
     # You should leave those lines as is
     ./hardware-configuration.nix
@@ -62,27 +61,6 @@
     nh
     psmisc
   ];
-
-  nixpkgs.overlays = [
-    (final: prev:
-      let
-        pkgs-stable = import inputs.nixpkgs-stable { system = prev.system; };
-      in {
-        python313 = prev.python313.override {
-          packageOverrides = pyself: pysuper: {
-            docling-parse   = pkgs-stable.python313Packages.docling-parse;
-            docling         = pkgs-stable.python313Packages.docling;
-            docling-core    = pkgs-stable.python313Packages.docling-core;
-            docling-ibm-models = pkgs-stable.python313Packages.docling-ibm-models;
-            docling-serve   = pkgs-stable.python313Packages.docling-serve;
-            scalar-fastapi  = pysuper.scalar-fastapi.overridePythonAttrs (_: {
-              pytestCheckPhase = ":";
-            });
-          };
-        };
-      })
-  ];
-  
   # Don't touch this
   system.stateVersion = "25.11";
 }
